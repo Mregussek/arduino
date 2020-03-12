@@ -1,25 +1,22 @@
-/*
- * pureClearning.c
- *
- * Created: 09.03.2020 21:12:57
- * Author : mateu
- */ 
+// Written by Mateusz Rzeczyca
 
-#include <avr/io.h> /* Defines pins, ports, etc */
-#include <util/delay.h> /* Functions to waste time */
-
-
-int main(void) {
-	// -------- Inits --------- //
-	DDRB |= (1 << PB0); /* Data Direction Register B: writing a one to the bit and enables output. */
-	
-	// ------ Event loop ------ //
-	while (1) {
-		PORTB = 0b00000001; /* Turn on first LED bit/pin in PORTB */
-		_delay_ms(1000); /* wait */
-		PORTB = 0b00000000; /* Turn off all B pins, including LED */
-		_delay_ms(1000); /* wait */
-		} /* End event loop */
-		return (0); /* This line is never reached */
+#define F_CPU 1000000UL // 1 MHz - CPU frequency
+ 
+#include <avr/io.h> // library, which defines ports, pins etc.
+#include <util/delay.h> // adds _delay_ms()
+ 
+ 
+int main(void)
+{
+    DDRB = 0xff; /* Data Direction Register B: configuring B ports as output */
+     
+    while (1) 
+    {
+        PORTB = 0b11111111; // launches all pins PORTB
+        _delay_ms(1000); // wait
+        PORTB = 0b00000000; // turns off all pins PORTB
+        _delay_ms(1000); // wait
+    }
+     
+    return 0;
 }
-

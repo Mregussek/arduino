@@ -25,11 +25,6 @@ const uint8_t celsius[] = {
   SEG_A | SEG_D | SEG_E | SEG_F   // C
 };
 
-const uint8_t fahrenheit[] = {
-  SEG_A | SEG_B | SEG_F | SEG_G,  // Circle
-  SEG_A | SEG_E | SEG_F | SEG_G   // F
-};
-
 TM1637Display display = TM1637Display(CLK, DIO);
 DHT dht = DHT(DHTPIN, DHTTYPE);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -61,7 +56,6 @@ void setup() {
 void loop() {
   // Get temperature and display it on 7seg
   temperature_celsius = dht.readTemperature();
-  temperature_fahrenheit = dht.readTemperature(true);
   display.showNumberDec(temperature_celsius, false, 2, 0);
   display.setSegments(celsius, 2, 2);
 

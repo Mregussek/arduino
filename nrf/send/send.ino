@@ -18,6 +18,7 @@ void setup()
   lcd.init();
   lcd.begin(16,2);
   lcd.backlight();
+  
   radio.begin();
   
   //set the address
